@@ -563,16 +563,16 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --  Autostart                                                                           {{{1
 
---local autostart_targets = {
-  --"ibus-daemon -drx",
-  --"firefox",
-  --"VirtualBox",
-  --"dropboxd",
-  --"play /usr/share/sounds/freedesktop/stereo/service-login.oga",
-  --"gvim"
---}
+local autostart_targets = {
+  "ibus-daemon -drx",
+  "firefox",
+  "VirtualBox",
+  "dropboxd",
+  "play /usr/share/sounds/freedesktop/stereo/service-login.oga",
+  "gvim"
+}
 
---for i = 1, #autostart_targets do
-  --awful.util.spawn_with_shell("run_once " .. autostart_targets[i])
---end
+for i = 1, #autostart_targets do
+  awful.util.spawn_with_shell("run_once " .. autostart_targets[i])
+end
 --  }}}1
