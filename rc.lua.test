@@ -568,7 +568,7 @@ local autostart_targets = {
   "firefox",
   "VirtualBox",
   "dropboxd",
-  "play /usr/share/sounds/freedesktop/stereo/service-login.oga",
+  --"play /usr/share/sounds/freedesktop/stereo/service-login.oga",
   "gvim"
 }
 
