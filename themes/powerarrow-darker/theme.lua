@@ -1,14 +1,16 @@
 --[[
 
-     Powerarrow Darker Awesome WM config 2.0
-     github.com/copycat-killer
+    Originated from Powerarrow Darker Awesome WM config 2.0
+    github.com/copycat-killer
+    Modified by Mudox
+    github.com/Mudox
 
 --]]
 
 theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
-theme.wallpaper                     = themes_dir .. "/wall.png"
+--theme.wallpaper                     = themes_dir .. "/wall.png"
 
 theme.font                          = "sans 8"
 theme.fg_normal                     = "#DDDDFF"
@@ -82,3 +84,4 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
 return theme
+-- vim: filetype=lua foldmethod=marker
