@@ -62,7 +62,7 @@ modkey = "Mod4"
 local layouts =
 {
   awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
+  --awful.layout.suit.max.fullscreen,
   awful.layout.suit.floating,
   awful.layout.suit.tile,
   awful.layout.suit.tile.left,
@@ -568,7 +568,7 @@ local autostart_targets = {
   "firefox",
   "VirtualBox",
   "dropboxd",
-  "play /usr/share/sounds/freedesktop/stereo/service-login.oga",
+  --"play /usr/share/sounds/freedesktop/stereo/service-login.oga",
   "gvim"
 }
 
@@ -576,3 +576,11 @@ for i = 1, #autostart_targets do
   awful.util.spawn_with_shell("run_once " .. autostart_targets[i])
 end
 --  }}}1
+
+-- Timers
+auto_wallpaper = timer( {timeout = 60} )
+auto_wallpaper:connect_signal("timeout", function()
+  awful.util.spawn_with_shell(
+    'DISPLAY=:1.0 feh --bg-center "$(find /home/mudox/.wallpaper/ | shuf | head -n 1)"')
+end)
+auto_wallpaper:start()
