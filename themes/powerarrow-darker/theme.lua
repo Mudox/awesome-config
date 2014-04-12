@@ -62,6 +62,10 @@ theme.arrl                          = themes_dir .. "/icons/arrl.png"
 theme.arrl_dl                       = themes_dir .. "/icons/arrl_dl.png"
 theme.arrl_ld                       = themes_dir .. "/icons/arrl_ld.png"
 
+theme.arrr                          = themes_dir .. "/icons/arrr.png"
+theme.arrr_dl                       = themes_dir .. "/icons/arrr_dl.png"
+theme.arrr_ld                       = themes_dir .. "/icons/arrr_ld.png"
+
 theme.widget_ac                     = themes_dir .. "/icons/ac.png"
 theme.widget_battery                = themes_dir .. "/icons/battery.png"
 theme.widget_battery_low            = themes_dir .. "/icons/battery_low.png"

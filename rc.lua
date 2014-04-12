@@ -110,7 +110,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
     }
   })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+launcher = awful.widget.launcher({ image = beautiful.awesome_icon,
     menu = mymainmenu })
 
 -- Menubar configuration
@@ -131,6 +131,15 @@ arrl_dl:set_image(beautiful.arrl_dl)
 
 arrl_ld = wibox.widget.imagebox()       -- left arror triangle leader
 arrl_ld:set_image(beautiful.arrl_ld)
+
+arrr = wibox.widget.imagebox()          -- right arror line
+arrr:set_image(beautiful.arrr)
+
+arrr_dl = wibox.widget.imagebox()       -- right arror triangle leader reverted
+arrr_dl:set_image(beautiful.arrr_dl)
+
+arrr_ld = wibox.widget.imagebox()       -- right arror triangle leader
+arrr_ld:set_image(beautiful.arrr_ld)
 -- }}}2
 
 -- Textclock                                                                               {{{2
@@ -185,7 +194,7 @@ cpuwidget = wibox.widget.background(lain.widgets.cpu({
 }), "#313131")
 -- }}}2
 
--- Create a wibox for each screen and add it                                               {{{2
+-- Top Bar for each screen                                                                 {{{2
 topbar = {}
 promptboxes = {}
 layoutboxes = {}
@@ -198,8 +207,8 @@ taglists.buttons = awful.util.table.join(
   awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
   awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
 )
-mytasklist = {}
-mytasklist.buttons = awful.util.table.join(
+tasklist = {}
+tasklist.buttons = awful.util.table.join(
   awful.button({ }, 1, function (c)
       if c == client.focus then
         c.minimized = true
@@ -248,22 +257,28 @@ for s = 1, screen.count() do
   taglists[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglists.buttons)
 
   -- Create a tasklist widget
-  mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+  tasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist.buttons)
 
   -- Create the wibox
   topbar[s] = awful.wibox({ position = "top", screen = s })
 
-  -- topbar left layout                                                                       {{{3
+  -- Topbar left layout                                                                       {{{3
   local left_layout = wibox.layout.fixed.horizontal()
 
-  left_layout:add(mylauncher)
+  left_layout:add(launcher)
   left_layout:add(taglists[s])
+  left_layout:add(arrr)
   left_layout:add(promptboxes[s])
+  left_layout:add(arrr)
+  left_layout:add(spr)
   -- }}}3
 
-  -- topbar right layout                                                                      {{{3
+  -- Topbar right layout                                                                      {{{3
   local right_layout = wibox.layout.fixed.horizontal()
 
+  right_layout:add(arrl)
+  right_layout:add(arrl)
+  right_layout:add(spr)
   if s == 1 then right_layout:add(wibox.widget.systray()) end
   right_layout:add(spr)
   right_layout:add(arrl)
@@ -292,7 +307,7 @@ for s = 1, screen.count() do
   local layout = wibox.layout.align.horizontal()
 
   layout:set_left(left_layout)
-  layout:set_middle(mytasklist[s])
+  layout:set_middle(tasklist[s])
   layout:set_right(right_layout)
 
   topbar[s]:set_widget(layout)
@@ -577,10 +592,11 @@ for i = 1, #autostart_targets do
 end
 --  }}}1
 
--- Timers
+--  Timers                                                                              {{{1
 auto_wallpaper = timer( {timeout = 60} )
 auto_wallpaper:connect_signal("timeout", function()
   awful.util.spawn_with_shell(
     'DISPLAY=:1.0 feh --bg-center "$(find /home/mudox/.wallpaper/ | shuf | head -n 1)"')
 end)
 auto_wallpaper:start()
+-- }}}1
