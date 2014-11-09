@@ -194,11 +194,14 @@ cpuwidget = wibox.widget.background(lain.widgets.cpu({
 }), "#313131")
 -- }}}2
 
--- Top Bar for each screen                                                                 {{{2
+-- Top Bar                                                                                 {{{2
 topbar = {}
 promptboxes = {}
 layoutboxes = {}
 taglists = {}
+tasklist = {}
+
+-- mouse interface associated with taglist. {{{3
 taglists.buttons = awful.util.table.join(
   awful.button({ }, 1, awful.tag.viewonly),
   awful.button({ modkey }, 1, awful.client.movetotag),
@@ -206,53 +209,65 @@ taglists.buttons = awful.util.table.join(
   awful.button({ modkey }, 3, awful.client.toggletag),
   awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
   awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
-)
-tasklist = {}
+) -- }}}3
+
+-- mouse interface associated with layout icon. {{{3
+layoutboxes.buttons = awful.util.table.join(
+  awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+  awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+  awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+  awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)
+) -- }}}3
+
+-- mouse interface associated with tasklist. {{{3
 tasklist.buttons = awful.util.table.join(
-  awful.button({ }, 1, function (c)
-      if c == client.focus then
-        c.minimized = true
-      else
-        -- Without this, the following
-        -- :isvisible() makes no sense
-        c.minimized = false
-        if not c:isvisible() then
-          awful.tag.viewonly(c:tags()[1])
-        end
-        -- This will also un-minimize
-        -- the client, if needed
-        client.focus = c
-        c:raise()
-      end
-    end),
-  awful.button({ }, 3, function ()
-      if instance then
-        instance:hide()
-        instance = nil
-      else
-        instance = awful.menu.clients({ width=250 })
-      end
-    end),
-  awful.button({ }, 4, function ()
-      awful.client.focus.byidx(1)
-      if client.focus then client.focus:raise() end
-    end),
-  awful.button({ }, 5, function ()
-      awful.client.focus.byidx(-1)
-      if client.focus then client.focus:raise() end
-    end))
+-- left button click to [un-]minimized current client.
+awful.button({ }, 1, function (c)
+  if c == client.focus then
+    c.minimized = true
+  else
+    -- Without this, the following
+    -- :isvisible() makes no sense
+    c.minimized = false
+    if not c:isvisible() then
+      awful.tag.viewonly(c:tags()[1])
+    end
+    -- This will also un-minimize
+    -- the client, if needed
+    client.focus = c
+    c:raise()
+  end
+end),
+
+-- right mouse click to [un-]hide the clients menu.
+awful.button({ }, 3, function ()
+  if instance then
+    instance:hide()
+    instance = nil
+  else
+    instance = awful.menu.clients({ width=250 })
+  end
+end),
+
+-- scrolling middle button to focus next/previous client.
+awful.button({ }, 4, function ()
+  awful.client.focus.byidx(1)
+  if client.focus then client.focus:raise() end
+end),
+awful.button({ }, 5, function ()
+  awful.client.focus.byidx(-1)
+  if client.focus then client.focus:raise() end
+end)
+) -- }}}3
 
 for s = 1, screen.count() do
   -- Create a promptbox for each screen
   promptboxes[s] = awful.widget.prompt()
-  -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+  -- Create an imagebox widget which will contains an icon indicating which
+  -- layout we're using.
   -- We need one layoutbox per screen.
   layoutboxes[s] = awful.widget.layoutbox(s)
-  layoutboxes[s]:buttons(awful.util.table.join(
-      awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-      awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-      awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-      awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+  layoutboxes[s]:buttons(layoutboxes.buttons)
   -- Create a taglist widget
   taglists[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglists.buttons)
 
@@ -420,7 +435,7 @@ clientkeys = awful.util.table.join(
 )
 -- }}}2
 
--- Bind all key numbers to tags.
+--  Bind all key numbers to tags.                                                          {{{2
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
@@ -467,14 +482,19 @@ clientbuttons = awful.util.table.join(
   awful.button({ modkey }, 1, awful.mouse.client.move),
   awful.button({ modkey }, 3, awful.mouse.client.resize))
 
--- load the 'run or raise' function
+-- }}}2
+
+--  'Run-or-Raise'                                                                         {{{2
 local ror = require("aweror")
 
--- -- generate and add the 'run or raise' key bindings to the globalkeys table
+-- generate and add the 'run or raise' key bindings to the globalkeys table
 globalkeys = awful.util.table.join(globalkeys, ror.genkeys(modkey))
+
+-- }}}2
 
 -- Set keys
 root.keys(globalkeys)
+
 -- }}}1
 
 --  Rules                                                                               {{{1
@@ -580,10 +600,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 local autostart_targets = {
   "ibus-daemon -drx",
-  "firefox",
-  "VirtualBox",
-  "dropboxd",
-  --"play /usr/share/sounds/freedesktop/stereo/service-login.oga",
+  "firefox"         ,
+  "VirtualBox"      ,
+  "dropboxd"        ,
+  "nutstore"        ,
   "gvim"
 }
 
