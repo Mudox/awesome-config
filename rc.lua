@@ -601,10 +601,11 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 local autostart_targets = {
   "ibus-daemon -drx",
   "firefox"         ,
-  "VirtualBox"      ,
+  "virtualbox"      ,
   "dropboxd"        ,
   "nutstore"        ,
-  "gvim"
+  "gvim"            ,
+  "xterm"
 }
 
 for i = 1, #autostart_targets do
