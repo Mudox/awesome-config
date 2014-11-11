@@ -599,13 +599,13 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --  Autostart                                                                           {{{1
 
 local autostart_targets = {
-  "xset m 1/4 8"    ,
-  "ibus-daemon -drx",
-  "firefox"         ,
-  "virtualbox"      ,
-  "dropboxd"        ,
-  "nutstore"        ,
-  "gvim"            ,
+  "xset m 1/4 8"     ,
+  "ibus-daemon -drx" ,
+  "firefox-developer",
+  "virtualbox"       ,
+  "dropboxd"         ,
+  "nutstore"         ,
+  "gvim"             ,
   "xterm"
 }
 
