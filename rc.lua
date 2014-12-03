@@ -603,7 +603,7 @@ local autostart_targets = {
   "ibus-daemon -drx" ,
   "firefox"          ,
   "virtualbox"       ,
-  "dropboxd"         ,
+  --"dropboxd"         ,
   "nutstore"         ,
   "gvim"             ,
   "xterm"
