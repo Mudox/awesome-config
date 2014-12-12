@@ -603,7 +603,6 @@ local autostart_targets = {
   "ibus-daemon -drx" ,
   "firefox"          ,
   "virtualbox"       ,
-  --"dropboxd"         ,
   "nutstore"         ,
   "gvim"             ,
   "xterm"
@@ -618,7 +617,8 @@ end
 auto_wallpaper = timer( {timeout = 60} )
 auto_wallpaper:connect_signal("timeout", function()
   awful.util.spawn_with_shell(
-    'DISPLAY=:0.0 feh --bg-center "$(find /home/mudox/.wallpapers | shuf | head -n 1)"')
+    'DISPLAY=:0.0 feh --bg-center "$(find /home/mudox/.wallpapers | shuf | head -n 1)"'
+  )
 end)
 auto_wallpaper:start()
 -- }}}1
