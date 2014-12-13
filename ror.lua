@@ -9,6 +9,7 @@
 
 table5={
   ["w"]={"firefox", "Firefox"},
-  ["z"]={"xterm"  , "XTerm"}  ,
-  ["v"]={"gvim"   , "Gvim"}   ,
+  ["z"]={"xterm"  , "XTerm"},
+  ["v"]={"gvim"   , "Gvim"},
+  ["c"]={"google-chrome-stable", "Google-chrome-stable"},
 }

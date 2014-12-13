@@ -387,9 +387,13 @@ globalkeys = awful.util.table.join(
   -- Standard program
   awful.key({ }, "Print", function () awful.util.spawn("screen_shot") end),
   awful.key({ modkey, }, "Return", function () awful.util.spawn(terminal) end),
+
+  -- vim
   awful.key({ modkey, }, "g", function () awful.util.spawn(editor) end),
   awful.key({ modkey, }, "a", function () awful.util.spawn(
       "gvim --role 'vim-chameleon-startup' --cmd 'let g:mdx_chameleon_cur_mode = \"startup\" | set lines=9 columns=40 | winpos 750 300' -c 'set cmdheight=1' -c 'ChamStartup' -c xa") end),
+
+  -- quit & restart awesome
   awful.key({ modkey, "Control" }, "r", awesome.restart),
   awful.key({ modkey, "Shift" }, "q", awesome.quit),
 
@@ -510,7 +514,7 @@ awful.rules.rules = {
   { rule_any = { class = { "feh", "MPlayer", "pinentry", "gimp", "Vlc", "Shutter" } },
     properties = { floating = true } },
   -- Specific application open in specific tag.
-  { rule = { class = "Firefox" },
+  { rule_any = { class = {"Firefox","Google-chrome-stable"} },
     properties = { tag = tags[1][2] } },
   { rule = { class = "VirtualBox" },
     properties = { tag = tags[1][4] } },
