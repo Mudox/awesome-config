@@ -609,7 +609,7 @@ local autostart_targets = {
   "virtualbox"       ,
   "nutstore"         ,
   "gvim"             ,
-  "xterm"
+  "deepin-terminal"  ,
 }
 
 for i = 1, #autostart_targets do
