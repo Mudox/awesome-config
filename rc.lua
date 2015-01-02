@@ -516,6 +516,8 @@ awful.rules.rules = {
   -- Specific application open in specific tag.
   { rule_any = { class = {"Firefox","Google-chrome-stable"} },
     properties = { tag = tags[1][2] } },
+  { rule = { class = "Deepin-terminal" },
+    properties = { tag = tags[1][3] } },
   { rule = { class = "VirtualBox" },
     properties = { tag = tags[1][4] } },
   -- Gapping issue.
