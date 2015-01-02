@@ -12,4 +12,5 @@ table5={
   ["z"]={"xterm"  , "XTerm"},
   ["v"]={"gvim"   , "Gvim"},
   ["c"]={"google-chrome-stable", "Google-chrome-stable"},
+  ["d"]={"deepin-terminal", "Deepin-terminal"},
 }
