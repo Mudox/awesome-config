@@ -8,9 +8,9 @@
 -- Use xprop to get this info from a window.  WM_CLASS(STRING) gives you "instance", "class".  WM_NAME(STRING) gives you the name of the selected window (usually something like the web page title for browsers, or the file name for emacs).
 
 table5={
-  ["w"]={"firefox", "Firefox"},
-  ["z"]={"xterm"  , "XTerm"},
-  ["v"]={"gvim"   , "Gvim"},
+  --["z"]={"xterm"  , "XTerm"},
+  ["w"]={"firefox",              "Firefox"},
+  ["v"]={"gvim",                 "Gvim"},
   ["c"]={"google-chrome-stable", "Google-chrome-stable"},
-  ["d"]={"deepin-terminal", "Deepin-terminal"},
+  ["d"]={"deepin-terminal",      "Deepin-terminal"},
 }
