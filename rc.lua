@@ -510,19 +510,27 @@ awful.rules.rules = {
       focus = awful.client.focus.filter,
       keys = clientkeys,
       buttons = clientbuttons } },
+
   -- Always float these application windows.
   { rule_any = { class = { "feh", "MPlayer", "pinentry", "gimp", "Vlc", "Shutter" } },
     properties = { floating = true } },
+  { rule = { name = { "Firefox Preferences"} },
+    properties = { floating = true } },
+
   -- Specific application open in specific tag.
+  { rule_any = { class = {"Gvim"} },
+    properties = { tag = tags[1][1] } },
   { rule_any = { class = {"Firefox","Google-chrome-stable"} },
     properties = { tag = tags[1][2] } },
   { rule = { class = "Deepin-terminal" },
     properties = { tag = tags[1][3] } },
   { rule = { class = "VirtualBox" },
     properties = { tag = tags[1][4] } },
+
   -- Gapping issue.
   { rule_any = { class = { "Gvim", "XTerm" } },
     properties = { size_hints_honor = false } },
+
   -- vim startup mode.
   { rule = { class = "Gvim", role = "vim-chameleon-startup" },
     properties = { floating = true } },
