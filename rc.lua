@@ -514,11 +514,11 @@ awful.rules.rules = {
   -- Always float these application windows.
   { rule_any = { class = { "feh", "MPlayer", "pinentry", "gimp", "Vlc", "Shutter" } },
     properties = { floating = true } },
-  { rule = { name = { "Firefox Preferences"} },
+  { rule = { name = "Firefox Preferences" },
     properties = { floating = true } },
 
   -- Specific application open in specific tag.
-  { rule_any = { class = {"Gvim"} },
+  { rule = { class = "Gvim" },
     properties = { tag = tags[1][1] } },
   { rule_any = { class = {"Firefox","Google-chrome-stable"} },
     properties = { tag = tags[1][2] } },
