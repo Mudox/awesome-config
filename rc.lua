@@ -613,13 +613,13 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --  Autostart                                                                           {{{1
 
 local autostart_targets = {
-  "xset m 1/4 8"     ,
-  "ibus-daemon -drx" ,
-  "firefox"          ,
-  "virtualbox"       ,
-  "nutstore"         ,
-  "gvim"             ,
-  "deepin-terminal"  ,
+  "xset m 1/4 8"    ,
+  "ibus-daemon -drx",
+  "firefox"         ,
+  "virtualbox"      ,
+  "nutstore"        ,
+  "gvim"            ,
+  "xterm"           ,
 }
 
 for i = 1, #autostart_targets do
