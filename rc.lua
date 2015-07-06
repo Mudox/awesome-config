@@ -47,7 +47,7 @@ end
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "deepin-terminal"
 editor = "gvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -616,10 +616,9 @@ local autostart_targets = {
   "xset m 1/4 8"    ,
   "ibus-daemon -drx",
   "firefox"         ,
-  "virtualbox"      ,
   "nutstore"        ,
   "gvim"            ,
-  "xterm"           ,
+  "deepin-terminal" ,
 }
 
 for i = 1, #autostart_targets do
